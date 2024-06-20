@@ -1,9 +1,17 @@
 name: Trivy
 
 on:
-  schedule:
-    - cron: '0 1 * * *'
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      registry:
+        required: true
+        type: string
+      image_name:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
   trivy:
@@ -12,21 +20,21 @@ jobs:
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ vars.REGISTRY }}
+          registry: ${{ inputs.registry }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.token }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ vars.REGISTRY }}/${{ vars.IMAGE_NAME }}:latest
+          image-ref: ${{ inputs.registry }}/${{ inputs.image_name }}:latest
           exit-code: '1'
           ignore-unfixed: true
           format: 'sarif'
           output: 'trivy-results.sarif'
         env:
           TRIVY_USERNAME: ${{ github.actor }}
-          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          TRIVY_PASSWORD: ${{ secrets.token }}
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
