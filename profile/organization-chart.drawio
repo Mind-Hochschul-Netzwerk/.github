@@ -217,7 +217,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="0iL1vbhnGC_bbiljyCc1-43" parent="1" style="rounded=1;whiteSpace=wrap;html=1;imageVerticalAlign=top;" value="Zusammengehörige Services GitHub-Repos bzw. dort&amp;nbsp;&lt;br&gt;&lt;div&gt;in der jeweiligen docker-compose.yml zusammengefasst.&lt;/div&gt;Serverspezifische Konfiguration möglichst über .env-Dateien" vertex="1">
+        <mxCell id="0iL1vbhnGC_bbiljyCc1-43" parent="1" style="rounded=1;whiteSpace=wrap;html=1;imageVerticalAlign=top;" value="Zusammengehörige Services sind in GitHub-Repositories bzw. dort&amp;nbsp;&lt;br&gt;&lt;div&gt;in der jeweiligen docker-compose.yml zusammengefasst.&lt;/div&gt;Serverspezifische Konfiguration erfolgt möglichst über .env-Dateien." vertex="1">
           <mxGeometry height="50" width="563" x="287" y="630" as="geometry" />
         </mxCell>
       </root>
